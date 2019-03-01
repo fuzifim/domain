@@ -28,17 +28,12 @@ class IndexController extends Controller
     }
     public function index(Request $request){
         $page = $request->has('page') ? $request->query('page') : 1;
-        $listNew = Cache::store('memcached')->remember('listNew',1, function()
-        {
-            return DB::table('domains')->where('status','active')->orderBy('updated_at','desc')->take(20)->get();
-        });
         $listDomains = Cache::store('memcached')->remember('listDomains_page_'.$page,1, function()
         {
             return DB::table('domains')->where('status','active')->orderBy('updated_at','desc')->simplePaginate(15);
         });
         return view('index',array(
-            'listDomains'=>$listDomains,
-            'listNew'=>$listNew
+            'listDomains'=>$listDomains
         ));
     }
     public function viewDomain(Request $request){
