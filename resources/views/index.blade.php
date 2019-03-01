@@ -20,16 +20,7 @@
                         @foreach($listDomains as $domain)
                             <?php $i++;?>
                             @if($i==3 || $i==9)
-                                <div class="form-group mt-2">
-                                    <ins class="adsbygoogle"
-                                         style="display:block"
-                                         data-ad-client="ca-pub-6739685874678212"
-                                         data-ad-slot="7536384219"
-                                         data-ad-format="auto"></ins>
-                                    <script>
-                                        (adsbygoogle = window.adsbygoogle || []).push({});
-                                    </script>
-                                </div>
+
                             @endif
                             <li class="list-group-item">
                                 <h3><a href="{!! route('view.domain',$domain->domain) !!}">{!! $domain->domain !!}</a></h3>

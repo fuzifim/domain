@@ -28,16 +28,17 @@ class IndexController extends Controller
     }
     public function index(Request $request){
         $page = $request->has('page') ? $request->query('page') : 1;
-//        $listNew = Cache::store('memcached')->remember('listNew',1, function()
-//        {
-//            return DB::table('company')->orderBy('updated_at','desc')->take(15)->get();
-//        });
+        $listNew = Cache::store('memcached')->remember('listNew',1, function()
+        {
+            return DB::table('domains')->where('status','active')->orderBy('updated_at','desc')->take(20)->get();
+        });
         $listDomains = Cache::store('memcached')->remember('listDomains_page_'.$page,1, function()
         {
             return DB::table('domains')->where('status','active')->orderBy('updated_at','desc')->simplePaginate(15);
         });
         return view('index',array(
-            'listDomains'=>$listDomains
+            'listDomains'=>$listDomains,
+            'listNew'=>$listNew
         ));
     }
     public function viewDomain(Request $request){
@@ -46,9 +47,14 @@ class IndexController extends Controller
             $getDomain=DB::table('domains')->where('base_64',base64_encode($domain))
                 ->where('status','active')
                 ->first();
+            $listNew = Cache::store('memcached')->remember('listNew',1, function()
+            {
+                return DB::table('domains')->where('status','active')->orderBy('updated_at','desc')->take(20)->get();
+            });
             if(!empty($getDomain->domain)){
                 return view('viewDomain',array(
-                    'domain'=>$getDomain
+                    'domain'=>$getDomain,
+                    'listNew'=>$listNew
                 ));
             }
         }
@@ -57,7 +63,7 @@ class IndexController extends Controller
         $getDomain = DB::table('domains')
             ->where('status', 'pending')
             ->where('craw_replay', '<=', 3)
-            ->orderBy('created_at', 'asc')->take(2)->get();
+            ->orderBy('created_at', 'asc')->take(3)->get();
         if (count($getDomain)) {
             $client = new Client([
                 'headers' => [
@@ -105,7 +111,7 @@ class IndexController extends Controller
                     $this->_dnsReport=$doc->saveHtml($node);
                 }
                 foreach ($xpath->evaluate('//div[@id="geo"]/div[2][contains(concat (" ", normalize-space(@class), " "), " panel-body ")] | //html/body/div[2]/div[2]/div[1]/div[6]/div/div[2]') as $node) {
-                    $this->_ipAddressInfo=$doc->saveHtml($node); 
+                    $this->_ipAddressInfo=$doc->saveHtml($node);
                 }
                 foreach ($xpath->evaluate('//div[@id="whois"]/div[2][contains(concat (" ", normalize-space(@class), " "), " panel-body ")] | //html/body/div[2]/div[2]/div[1]/div[7]/div/div[2]') as $node) {
                     $this->_whoisRecord=$doc->saveHtml($node);
