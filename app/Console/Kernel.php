@@ -24,7 +24,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->call('\App\Http\Controllers\IndexController@infoSiteOutlook')->cron('*/2 * * * *');
+        $schedule->call('\App\Http\Controllers\IndexController@infoSiteOutlook')->everyMinute();
     }
 
     /**
