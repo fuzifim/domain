@@ -136,7 +136,8 @@ class IndexController extends Controller
                     'review_number'=>1,
                     'ads'=>$this->_ads_status,
                     'status'=>'active',
-                    'report_outlook'=>json_encode($reportOutlook)
+                    'report_outlook'=>json_encode($reportOutlook),
+                    'updated_at'=>Carbon::now()->format('Y-m-d H:i:s')
                 );
                 DB::table('domains')->where('id',$domain->id)
                     ->update($data);
