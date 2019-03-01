@@ -39,9 +39,12 @@ class IndexController extends Controller
     public function viewDomain(Request $request){
         $domain = $request->route('domain');
         if(!empty($domain)){
-            $getDomain=DB::table('domains')->where('base_64',base64_encode($domain))
-                ->where('status','active')
-                ->first();
+            $getDomain = Cache::store('memcached')->remember('domain_'.base64_encode($domain),1, function() use($domain)
+            {
+                return DB::table('domains')->where('base_64',base64_encode($domain))
+                    ->where('status','active')
+                    ->first();
+            });
             $listNew = Cache::store('memcached')->remember('listNew',1, function()
             {
                 return DB::table('domains')->where('status','active')->orderBy('updated_at','desc')->take(20)->get();
