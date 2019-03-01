@@ -110,6 +110,8 @@ class IndexController extends Controller
                 }
                 foreach ($xpath->evaluate('//div[@id="geo"]/div[2][contains(concat (" ", normalize-space(@class), " "), " panel-body ")] | //html/body/div[2]/div[2]/div[1]/div[6]/div/div[2]') as $node) {
                     $this->_ipAddressInfo=$doc->saveHtml($node);
+                    $this->_ipAddressInfo = preg_replace('/<dt>Location(.*)<\/dt>/i','',$this->_ipAddressInfo);
+                    $this->_ipAddressInfo = preg_replace('/<dd><div style="height:200px;(.*)<\/dd>/i','',$this->_ipAddressInfo);
                 }
                 foreach ($xpath->evaluate('//div[@id="whois"]/div[2][contains(concat (" ", normalize-space(@class), " "), " panel-body ")] | //html/body/div[2]/div[2]/div[1]/div[7]/div/div[2]') as $node) {
                     $this->_whoisRecord=$doc->saveHtml($node);
