@@ -190,6 +190,7 @@ class IndexController extends Controller
                         DB::table('domains')->insert(
                             [
                                 'domain' => $domain,
+                                'domain_rename'=>$item->nodeValue,
                                 'base_64' => base64_encode($domain),
                                 'created_at'=>Carbon::now()->format('Y-m-d H:i:s'),
                                 'updated_at'=>Carbon::now()->format('Y-m-d H:i:s')
