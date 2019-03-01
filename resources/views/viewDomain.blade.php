@@ -101,7 +101,7 @@
                     <ul class="list-group">
                         @foreach($listNew as $domainNew)
                             <li class="list-group-item">
-                                <h3><a href="{!! route('view.domain',$domainNew->domain) !!}">{!! $domainNew->domain !!}</a></h3>
+                                <h3><a href="{!! route('view.domain',$domainNew->domain) !!}">@if(!empty($domainNew->domain_rename)){!! $domainNew->domain_rename !!}@else{!! $domainNew->domain !!}@endif</a></h3>
                             </li>
                         @endforeach
                     </ul>

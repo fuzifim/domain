@@ -23,7 +23,7 @@
 
                             @endif
                             <li class="list-group-item">
-                                <h3><a href="{!! route('view.domain',$domain->domain) !!}">{!! $domain->domain !!}</a></h3>
+                                <h3><a href="{!! route('view.domain',$domain->domain) !!}">@if(!empty($domain->domain_rename)){!! $domain->domain_rename !!}@else{!! $domain->domain !!}@endif</a></h3>
                             </li>
                         @endforeach
                     </ul>
