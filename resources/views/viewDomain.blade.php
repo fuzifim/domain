@@ -56,14 +56,21 @@
                         (adsbygoogle = window.adsbygoogle || []).push({});
                     </script>
                 </div>
-                <div class="form-group mt-2">
-                    {!! $basicInfo !!}
+                <div class="card mt-2">
+                    <div class="card-header">
+                        Basic Infomation
+                    </div>
+                    <div class="card-body">
+                        {!! $basicInfo !!}
+                    </div>
                 </div>
-                <div class="form-group mt-2">
-                    {!! $websiteInfo !!}
-                </div>
-                <div class="form-group mt-2">
-                    {!! $semrushMetrics !!}
+                <div class="card mt-2">
+                    <div class="card-header">
+                        Website Infomation
+                    </div>
+                    <div class="card-body">
+                        {!! $websiteInfo !!}
+                    </div>
                 </div>
                 <div class="form-group mt-2">
                     <ins class="adsbygoogle"
@@ -75,14 +82,37 @@
                         (adsbygoogle = window.adsbygoogle || []).push({});
                     </script>
                 </div>
-                <div class="form-group mt-2">
-                    {!! $dnsReport !!}
+                <div class="card mt-2">
+                    <div class="card-header">
+                        SemRush Metrics
+                    </div>
+                    <div class="card-body">
+                        {!! $semrushMetrics !!}
+                    </div>
                 </div>
-                <div class="form-group mt-2">
-                    {!! $ipAddressInfo !!}
+                <div class="card mt-2">
+                    <div class="card-header">
+                        DNS Report
+                    </div>
+                    <div class="card-body">
+                        {!! $dnsReport !!}
+                    </div>
                 </div>
-                <div class="form-group mt-2">
-                    {!! $whoisRecord !!}
+                <div class="card mt-2">
+                    <div class="card-header">
+                        IP Address Infomation
+                    </div>
+                    <div class="card-body">
+                        {!! $ipAddressInfo !!}
+                    </div>
+                </div>
+                <div class="card mt-2">
+                    <div class="card-header">
+                        Whois Record
+                    </div>
+                    <div class="card-body">
+                        {!! $whoisRecord !!}
+                    </div>
                 </div>
             </div>
             <div class="col-md-4">
