@@ -24,6 +24,7 @@
         <a href="https://taoweb.cungcap.net/" target="_blank">Tạo website</a>,
         <a href="http://search.cungcap.net/" target="_blank">Tìm kiếm</a>,
         <a href="http://domain.cungcap.net/" target="_blank">Thông tin tên miền</a>,
+        <a href="http://ip.cungcap.net/" target="_blank">Thông tin Ip</a>,
         <a href="http://company.cungcap.net/" target="_blank">Thông tin công ty</a>,
         <a href="http://twitter.cungcap.net/" target="_blank">Thông tin twitter</a>
     </div>
