@@ -30,7 +30,7 @@ class IndexController extends Controller
         $page = $request->has('page') ? $request->query('page') : 1;
         $listDomains = Cache::store('memcached')->remember('listDomains_page_'.$page,1, function()
         {
-            return DB::table('domains')->where('status','active')->simplePaginate(15);
+            return DB::table('domains')->where('status','active')->orderBy('updated_at','desc')->simplePaginate(15);
         });
         return view('index',array(
             'listDomains'=>$listDomains
